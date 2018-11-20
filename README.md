@@ -7,6 +7,7 @@ A mushroom gathering game.
 - interact methods, update (physics - only for player) and collisions
 - utilities: loaders for objects, textures, shaders (if external files), sounds
 - architecture **Maj**
+
 Later:
 - sound engine
 - particles
