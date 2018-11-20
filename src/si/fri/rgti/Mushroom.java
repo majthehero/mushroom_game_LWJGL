@@ -1,5 +1,4 @@
-package game;
-import game.*;
+package si.fri.rgti;
 
 public class Mushroom
         extends GameObject

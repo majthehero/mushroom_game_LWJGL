@@ -1,5 +1,4 @@
-package game;
-import game.Drawable;
+package si.fri.rgti;
 
 public class GameObject implements Drawable {
 

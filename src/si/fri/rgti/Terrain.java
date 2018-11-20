@@ -1,4 +1,4 @@
-package game;
+package si.fri.rgti;
 
 public class Terrain
     extends GameObject {

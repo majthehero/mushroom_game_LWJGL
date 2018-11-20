@@ -1,3 +1,5 @@
+package si.fri.rgti;
+
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -22,7 +24,7 @@ public class App {
     void run() {
         System.out.println("Starting...");
 
-        init();
+        gl_init();
         loop();
 
         // cleanup
@@ -35,7 +37,7 @@ public class App {
 
     }
 
-    void init() {
+    void gl_init() {
         // error callback - will print to std.err
         GLFWErrorCallback.createPrint(System.err).set();
 
@@ -82,7 +84,7 @@ public class App {
         GL.createCapabilities(); // enable gl
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
-        // as promised, checking for exit
+        // as promised, checking for exit - don't - prefer to use si.fri.rgti.menu.
         while(!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

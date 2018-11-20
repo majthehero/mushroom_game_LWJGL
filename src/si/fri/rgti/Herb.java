@@ -1,5 +1,5 @@
-package game;
-import game.*;
+package si.fri.rgti;
+
 public class Herb
     extends GameObject
     implements Interactable {
