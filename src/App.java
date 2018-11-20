@@ -8,42 +8,15 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 
 
-public class MainWindow {
-
-    private class Item {
-        float pos_x;
-        float pos_y;
-        float[][] vertices;
-        Item(float x, float y) {
-            pos_x = x;
-            pos_y = y;
-            vertices = new float[][]
-                    {{-0.4f,  0.4f,  0.0f},
-                     { 0.4f, -0.4f,  0.0f},
-                     { 0.0f,  0.8f,  0.0f},
-                     { -0.4f, 0.0f, -0.4f}};
-        }
-
-        void draw(transformMatrix) {
-            glBegin(GL_TRIANGLES);
-            for (float[] vertex : vertices) {
-                // transform
-
-                // draw
-                glVertex3fv(vertex);
-            }
-            glEnd();
-        }
-    }
+public class App {
 
     private long window;
 
-    private Item object;
 
 
     // entry point
     public static void main(String[] args) {
-        new MainWindow().run();
+        new App().run();
     }
 
     void run() {
@@ -107,16 +80,13 @@ public class MainWindow {
 
     void loop() {
         GL.createCapabilities(); // enable gl
-        glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
-
-        // TODO: replace with game_init function
-        object = new Item(0,0);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
         // as promised, checking for exit
         while(!glfwWindowShouldClose(window)) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            object.draw();
+            // TODO: here goes something
 
             glfwSwapBuffers(window);
             glfwPollEvents(); // anonymous callback was set, now needs to be called. Weird, usually callbacks are called
