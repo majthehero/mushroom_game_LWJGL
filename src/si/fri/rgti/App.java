@@ -25,7 +25,9 @@ public class App {
         System.out.println("Starting...");
 
         gl_init();
-        loop();
+
+        Game game = new Game();
+        game.run();
 
         // cleanup
         glfwFreeCallbacks(window);
