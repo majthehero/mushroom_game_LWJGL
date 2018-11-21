@@ -7,7 +7,7 @@ public class GameObject implements Drawable {
     methods: inherited
      */
 
-    public GameObject() {
+    GameObject() {
         // TODO
     }
 
