@@ -15,7 +15,6 @@ public class Terrain
     - methods: generate new block, delete faraway blocks
      */
 
-    int seed = 123;
     Random random;
 
     ArrayList<TerrainBlock> terrainBlocks;
@@ -29,7 +28,7 @@ public class Terrain
             }
         }
 
-        random = new Random(seed);
+        random = new Random();
     }
 
     TerrainBlock generateBlock(int block_x, int block_y) {
@@ -92,7 +91,8 @@ public class Terrain
         // 3. SQUARE step: same
 
 
-
+        // create a new block from height map
+        TerrainBlock newBlock = new TerrainBlock(heightmap);
 
         return null;
     }

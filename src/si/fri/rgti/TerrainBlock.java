@@ -1,5 +1,8 @@
 package si.fri.rgti;
 
+import kotlin.reflect.jvm.internal.impl.types.checker.TypeCheckerContext;
+import org.joml.Vector3f;
+
 public class TerrainBlock
     extends GameObject {
 
@@ -10,18 +13,31 @@ public class TerrainBlock
 
     float [][] heightmap;
 
-    /* TODO Katja
-    nek 2d array  točk
-    pa render metoda prazna
-     */
+    // vertex array
+    Vector3f[] vertex_array;
+    // triangle array
+    int[][] triangle_array = new int[(resolution-1)*2*(resolution-1)][3]; // num of tri wrt res
+
+    TerrainBlock () {
+    }
+
+    TerrainBlock (float[][] heightmap) {
+        this.heightmap = heightmap;
+    }
 
     @Override
     public void draw() {
         super.draw();
-        // TODO Maj
+
+        // create vertex array if not created
+        if (vertex_array == null) {
+            // create array
+        }
+        // create triangle array if not created
+
     }
 
-    public float[] getHeightmapBorder(String direction) {
+    float[] getHeightmapBorder(String direction) {
         /**
          * Get float array of height along a chosen border.
          * For direction that don't share a border but only a corner,
