@@ -20,6 +20,7 @@ public class TerrainBlock
 
     static int resolution = 33;
 
+    final static float SCALING_FACTOR = 0.5f;
     float [][] heightmap;
 
     // vertex array
@@ -33,12 +34,6 @@ public class TerrainBlock
 
     int vbo_vertex_handle;
     int vbo_triangle_handle;
-
-    /**
-     * Constructor: constructs an empty - flat - terrain block.
-     */
-    TerrainBlock () {
-    }
 
     /**
      * Contructor: constructs a TerrainBlock from heightmap.
@@ -130,12 +125,9 @@ public class TerrainBlock
 
         glDisableVertexAttribArray(0);
 
-
-
-
-
     }
 
+    // geometry generation
     float[] getHeightmapBorder(String direction) {
         /**
          * Get float array of height along a chosen border.
@@ -226,35 +218,40 @@ public class TerrainBlock
         System.out.println("DiamondSquare: x_min " + x_min + " x_max " + x_max +
                 " y_min " + y_min + " y_max " + y_max +
                 " iteration " + curr_iter);
-        int x_center = (x_max - x_min)/2;
-        int y_center = (y_max - y_min)/2;
-        float rand_mod = (float) (Math.random() * Math.pow(0.5, curr_iter));
-        heightmap[x_center][y_center] =
+        int x_center = (x_max - x_min)/2 + x_min;
+        int y_center = (y_max - y_min)/2 + y_min;
+        float rand_mod = (float) (Math.random() * Math.pow(SCALING_FACTOR, curr_iter));
+        if (heightmap[x_center][y_center] == 0)
+            heightmap[x_center][y_center] =
                 (heightmap[x_min][y_min] + heightmap[x_max][y_min] +
                         heightmap[x_max][y_max] + heightmap[x_min][y_max]) / 4 +
                         rand_mod;
         // diamond step
         int diff = (x_max - x_min)/2;
         // left
-        heightmap[x_min][y_center] = diamond_get_avg(
+        if (heightmap[x_min][y_center] == 0)
+            heightmap[x_min][y_center]= diamond_get_avg(
                 x_min, y_center + diff,
                 x_min + diff, y_center,
                 x_min, y_center - diff,
                 x_min - diff, y_center) + (float)(Math.random() * Math.pow(0.5, curr_iter));
         // up
-        heightmap[x_center][y_min] = diamond_get_avg(
+        if (heightmap[x_center][y_min] == 0)
+            heightmap[x_center][y_min]= diamond_get_avg(
                 x_center, y_min + diff,
                 x_center + diff, y_min,
                 x_center, y_min - diff,
                 x_center - diff, y_min) + (float)(Math.random() * Math.pow(0.5, curr_iter));
         // right
-        heightmap[x_max][y_center] = diamond_get_avg(
+        if (heightmap[x_max][y_center] == 0)
+            heightmap[x_max][y_center] = diamond_get_avg(
                 x_max, y_center + diff,
                 x_max + diff, y_center,
                 x_max, y_center - diff,
                 x_max - diff, y_center) + (float)(Math.random() * Math.pow(0.5, curr_iter));
         // down
-        heightmap[x_center][y_max] = diamond_get_avg(
+        if (heightmap[x_center][y_max] == 0)
+            heightmap[x_center][y_max] = diamond_get_avg(
                 x_center, y_max + diff,
                 x_center + diff, y_max,
                 x_center, y_max - diff,
@@ -262,13 +259,15 @@ public class TerrainBlock
 
         // recure into sub-squares
         // left up
-        diamond_square(x_min, x_center, y_min, y_center, curr_iter + 1);
-        // right up
-        diamond_square(x_center, x_max, y_min, y_center, curr_iter + 1);
-        // right down
-        diamond_square(x_center, x_max, y_center, y_max, curr_iter + 1);
-        // left down
-        diamond_square(x_min, x_center, y_center, y_max, curr_iter + 1);
+        if (Math.pow(2, curr_iter) < resolution) {
+            diamond_square(x_min, x_center, y_min, y_center, curr_iter + 1);
+            // right up
+            diamond_square(x_center, x_max, y_min, y_center, curr_iter + 1);
+            // right down
+            diamond_square(x_center, x_max, y_center, y_max, curr_iter + 1);
+            // left down
+            diamond_square(x_min, x_center, y_center, y_max, curr_iter + 1);
+        }
     }
 
 }

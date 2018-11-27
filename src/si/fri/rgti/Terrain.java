@@ -20,19 +20,16 @@ public class Terrain
     ArrayList<TerrainBlock> terrainBlocks;
 
     Terrain() {
-
         terrainBlocks = new ArrayList<TerrainBlock>();
         for (int i=-1; i<=1; i++) {
             for (int j=-1; j<=1; j++) {
                 terrainBlocks.add(generateBlock(i,j));
             }
         }
-
         random = new Random();
     }
 
     TerrainBlock generateBlock(int block_x, int block_y) {
-
         class _border {
             float[] h_vals;
             String dir;
@@ -91,8 +88,13 @@ public class Terrain
         return newBlock;
     }
 
-
-
+    @Override
+    public void draw() {
+        super.draw();
+        for (TerrainBlock tb : terrainBlocks) {
+            tb.draw();
+        }
+    }
 }
 
 

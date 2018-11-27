@@ -14,7 +14,7 @@ public class Mushroom
     }
 
     @Override
-    public void Interact(Interactable gObject) {
+    public void Interact(Player player) {
         // TODO
     }
 

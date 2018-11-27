@@ -4,7 +4,6 @@ public class Player
     extends GameObject
     implements Updateable, Interactable {
 
-
     @Override
     public void draw() {
         super.draw();
