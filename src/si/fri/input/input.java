@@ -27,6 +27,4 @@ public class input extends GLFWKeyCallback {
         return keys[keycode];
     }
 
-
-
 }
