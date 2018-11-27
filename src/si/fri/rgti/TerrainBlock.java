@@ -6,6 +6,7 @@ import org.lwjgl.BufferUtils;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
@@ -14,20 +15,21 @@ import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 public class TerrainBlock
     extends GameObject {
 
-    // position in game-space
+    // position
     int x;
     int y;
 
-    static int resolution = 33;
+    // game object
+    ArrayList<GameObject> gameObjects = new ArrayList<>();
 
+    // geometry
+    static int resolution = 33;
     final static float SCALING_FACTOR = 0.5f;
     float [][] heightmap;
-
     // vertex array
     Vector3f[] vertex_array = null;
     // triangle array
     int[][] triangle_array = null;
-
     // VBOs
     FloatBuffer vertex_buffer = null;
     IntBuffer triangle_buffer = null;

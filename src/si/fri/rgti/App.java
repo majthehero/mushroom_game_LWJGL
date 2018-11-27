@@ -8,13 +8,9 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-
-
 public class App {
 
     private long window;
-
-
 
     // entry point
     public static void main(String[] args) {
@@ -63,19 +59,6 @@ public class App {
                 glfwSetWindowShouldClose(window, true); // check in loop
             }
         });
-
-        // centering a window doesn't work correctly (sometimes) if you have more than one screen.
-//        // get thread stack and push new frame (WHY LIKE THIS???)
-//        try (MemoryStack stack = stackPush()) {
-//            IntBuffer pWidth = stack.mallocInt(1); // java has pointers now. wtf
-//            IntBuffer pHeight = stack.mallocInt(1);
-//
-//            glfwGetWindowSize(window, pWidth, pHeight); // get window size
-//            GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor()); // resolution of prim montor
-//            glfwSetWindowPos(window,
-//                    vidmode.width() - pWidth.get(0)/2,
-//                    vidmode.height() - pHeight.get()/2); // center window on screen
-//        } // stack frame popped now auto
 
         glfwMakeContextCurrent(window);
         glfwSwapInterval(1); // this enables vsync
