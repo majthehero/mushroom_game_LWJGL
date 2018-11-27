@@ -46,6 +46,9 @@ public class TerrainBlock
         diamond_square(0, resolution-1, 0, resolution-1, 0);
     }
 
+
+    // drawing
+
     /**
      * Creates geometry from heightmaps.
      * Generates vertices, generates triangles index.
@@ -128,14 +131,25 @@ public class TerrainBlock
         glBindBuffer(GL_ARRAY_BUFFER, vbo_vertex_handle); // vertex buffer
         glBufferData(GL_ARRAY_BUFFER, vertex_buffer, GL_STATIC_DRAW);
 
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo_triangle_handle);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, triangle_buffer, GL_STATIC_DRAW);
+
         // Draw
-        glDrawArrays(GL_TRIANGLES, 0, vertex_array.length*3);
+        glDrawElements(GL_TRIANGLES, triangle_buffer);
 
         glDisableVertexAttribArray(0);
 
     }
 
+
     // geometry generation
+
+    /**
+     * Returns the heightmap border.
+     * Used in Terrain.generateTerrain to pass this block's borders to those generating next to it.
+     * @param direction Which border to return
+     * @return float[] border of heightmap
+     */
     float[] getHeightmapBorder(String direction) {
         /**
          * Get float array of height along a chosen border.
