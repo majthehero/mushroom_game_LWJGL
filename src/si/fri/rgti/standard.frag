@@ -3,11 +3,6 @@ varying vec3 viewVector;
 varying vec3 vertPos;
 varying vec2 texcoord;
 
-uniform sampler2D normalMap;
-uniform samplerCube tCube;
-uniform float bNormal;
-uniform float time;
-
 vec3 perturbNormal( vec3 eye_pos, vec3 surf_norm, vec2 uv_coords, vec3 normal_perturbation ) {
 	vec3 q0 = dFdx( eye_pos.xyz );
 	vec3 q1 = dFdy( eye_pos.xyz );
