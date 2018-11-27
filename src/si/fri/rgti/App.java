@@ -67,41 +67,6 @@ public class App {
         glfwSwapInterval(1); // this enables vsync
         glfwShowWindow(window); // now show it, after it's set up
 
-        // create shader program
-        int shaderProgram = glCreateProgram();
-        int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        StringBuilder vertexShaderSrc = new StringBuilder();
-        StringBuilder fragmentShaderSrc = new StringBuilder();
-        // load shader source files
-        try { // vertex shader
-            BufferedReader br = new BufferedReader(new FileReader("src/sI/fri/rgti/shader.vert"));
-            String line;
-            while ((line = br.readLine()) != null) {
-                vertexShaderSrc.append(line).append("\n");
-            }
-            br.close();
-        } catch (IOException e) {
-            System.out.println("Failed to load vertex shader.");
-        }
-        try { // fragment shader
-            BufferedReader br = new BufferedReader(new FileReader("src/sI/fri/rgti/shader.frag"));
-            String line;
-            while ((line = br.readLine()) != null)
-                fragmentShaderSrc.append(line).append("\n");
-        } catch (IOException e) {
-            System.out.println("Failed to load fragment shader.");
-        }
-
-        glShaderSource(GL_VERTEX_SHADER, vertexShaderSrc);
-        glCompileShader(vertexShader);
-        if (glGetShaderi(vertexShader, GL_COMPILE_STATUS) == GL_FALSE)
-            System.out.println("Failed to compile vertex shader.");
-
-        glShaderSource(GL_FRAGMENT_SHADER, fragmentShaderSrc);
-        glCompileShader(fragmentShader);
-        if (glGetShaderi(fragmentShader, GL_COMPILE_STATUS) == GL_FALSE)
-            System.out.println("Failed to compile fragment shader.");
 
     }
 
