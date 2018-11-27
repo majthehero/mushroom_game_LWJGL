@@ -62,8 +62,7 @@ public class Terrain
             }
         }
 
-        // run diamond-square algortihm
-        // 1. init heightmap and borders
+        // prepare heightmap for diamond-square algorithm
         float [][] heightmap = new float[TerrainBlock.resolution][TerrainBlock.resolution];
         for (_border b : borders) {
             switch (b.dir) {
@@ -85,17 +84,14 @@ public class Terrain
                     break;
             }
         }
-        // 2. DIAMOND step: get corners, set center to avg + rand
-
-
-        // 3. SQUARE step: same
-
 
         // create a new block from height map
         TerrainBlock newBlock = new TerrainBlock(heightmap);
 
-        return null;
+        return newBlock;
     }
+
+
 
 }
 
