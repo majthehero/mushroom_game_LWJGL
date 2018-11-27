@@ -12,7 +12,7 @@ public class Herb
     }
 
     @Override
-    public void Interact(Interactable gObject) {
-        // TODO
+    public void Interact(Player player) {
+        // TODO: set player's attributes according to the herb effect
     }
 }

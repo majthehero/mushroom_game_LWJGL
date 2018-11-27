@@ -109,13 +109,19 @@ public class TerrainBlock
      */
     @Override
     public void draw() {
-        super.draw();
+        super.draw(); // useless, eh
+        // draw all containing items
+        for (GameObject gobj : gameObjects) {
+            gobj.draw();
+        }
+
         // create geometry if not yet done
         if (vertex_array == null || triangle_array == null)
             this.createGeometry();
         // build buffer objects if not yet done
         if (vertex_buffer == null || triangle_buffer == null)
             this.createBuffers();
+
         // reder geometry
         glEnableVertexAttribArray(0);
 
@@ -217,9 +223,9 @@ public class TerrainBlock
                              int y_min, int y_max,
                              int curr_iter) {
         // square step
-        System.out.println("DiamondSquare: x_min " + x_min + " x_max " + x_max +
-                " y_min " + y_min + " y_max " + y_max +
-                " iteration " + curr_iter);
+//        System.out.println("DiamondSquare: x_min " + x_min + " x_max " + x_max +
+//                " y_min " + y_min + " y_max " + y_max +
+//                " iteration " + curr_iter);
         int x_center = (x_max - x_min)/2 + x_min;
         int y_center = (y_max - y_min)/2 + y_min;
         float rand_mod = (float) (Math.random() * Math.pow(SCALING_FACTOR, curr_iter));

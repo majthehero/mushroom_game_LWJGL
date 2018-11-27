@@ -22,7 +22,7 @@ public class App {
 
         gl_init();
 
-        Game game = new Game();
+        Game game = new Game(window);
         game.run();
 
         // cleanup
@@ -65,19 +65,5 @@ public class App {
         glfwShowWindow(window); // now show it, after it's set up
     }
 
-    void loop() {
-        GL.createCapabilities(); // enable gl
-        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-
-        // as promised, checking for exit - don't - prefer to use si.fri.rgti.menu.
-        while(!glfwWindowShouldClose(window)) {
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-            // TODO: here goes something
-
-            glfwSwapBuffers(window);
-            glfwPollEvents(); // anonymous callback was set, now needs to be called. Weird, usually callbacks are called
-        }
-    }
 
 }
