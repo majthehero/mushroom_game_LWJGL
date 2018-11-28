@@ -115,6 +115,12 @@ public class Player extends GameObject implements Updateable {
 
     // matrike iz predavanj
 
+    public Matrix4f getPerspectiveMatrix(float d) {
+        Matrix4f p = new Matrix4f(1, 0, 0, 0, 0, 1,
+                0, 0, 0, 0, 1, (float)(1/d), 0, 0, 0, 0);
+        return p;
+    }
+
     public Matrix4f getMVMatrix() {
         float[] koordKamere = new float[3];
         koordKamere[0] = this.x;
