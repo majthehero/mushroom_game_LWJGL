@@ -13,6 +13,15 @@ public class Herb
 
     @Override
     public void Interact(Player player) {
-        // TODO: set player's attributes according to the herb effect
+
+        // ce player nima polnega lajfa, mu pristejemo 5hp zaradi zelisca
+        if(player.HP < player.maxHP) {
+            player.HP += 5;
+            if(player.HP > player.maxHP) {
+                player.HP = player.maxHP;
+            }
+        }
+
+
     }
 }

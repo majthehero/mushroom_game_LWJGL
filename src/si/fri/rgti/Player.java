@@ -19,6 +19,7 @@ import si.fri.rgti.input.*;
 
 public class Player extends GameObject implements Updateable {
     public int HP;
+    public int maxHP;
     public int pobraneGobe;
     public int pobranaZelisca;
     public int goal;
