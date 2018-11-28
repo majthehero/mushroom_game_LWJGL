@@ -51,10 +51,10 @@ public class SceneGraph
 
 
         glUniformMatrix4fv(glGetUniformLocation(fragmentShader, "mvMatrix"),
-                mvMatBuffer);
+                false, mvMatBuffer);
 
         glUniformMatrix4fv(glGetUniformLocation(fragmentShader, "pMatrix"),
-                pMatBuffer);
+                false, pMatBuffer);
 
         player.draw(mvMatrix);
         terrain.draw(mvMatrix);

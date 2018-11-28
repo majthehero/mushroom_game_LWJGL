@@ -23,7 +23,13 @@ public class Player extends GameObject implements Updateable {
     float x;
     float y;
     float z;
+    // orientation in game space - in RADIANS - add change of mouse position, divided by something that makes sense
+    float rot_x;
+    float rot_y;
+    float rot_z;
+
     // velocities
+
 
 
     // We need to strongly reference callback instances.
@@ -36,7 +42,7 @@ public class Player extends GameObject implements Updateable {
 
     @Override
     public void draw(Matrix4f mvMat) {
-         // TODO
+         // TODO Maj
     }
 
     @Override
@@ -106,6 +112,18 @@ public class Player extends GameObject implements Updateable {
 
 
     // matrike iz predavanj
+
+    public Matrix4f getMVMatrix() {
+        float[] koordKamere = new float[3];
+        koordKamere[0] = this.x;
+        koordKamere[0] = this.y;
+        koordKamere[0] = this.z;
+
+        Matrix4f translateMat = translate(-koordKamere[0], -koordKamere[1], -koordKamere[2]);
+        Matrix4f rotX = rotateX()
+        // TODO: rotacija - skaliranje je lahko identiteta torej ignoriraj
+        return mvMat;
+    }
 
     public Matrix4f getMVMatrix(double d) {
         float[] koordKamere = new float[3];
