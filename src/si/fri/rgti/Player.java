@@ -111,6 +111,9 @@ public class Player extends GameObject implements Updateable {
 
 
 
+
+
+
     // matrike iz predavanj
 
     public Matrix4f getMVMatrix() {
