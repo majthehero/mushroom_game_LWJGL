@@ -8,6 +8,9 @@ public class Mushroom
     members: color, poison bool, clipping box?
     methods: inherited
      */
+    public double color;
+    public boolean poison;
+
 
     public Mushroom() {
         // TODO
@@ -15,7 +18,14 @@ public class Mushroom
 
     @Override
     public void Interact(Player player) {
-        // TODO
+        player.pobraneGobe++;
+
+        if(poison) {
+            player.HP -= 5;
+        }
+
     }
+
+
 
 }
