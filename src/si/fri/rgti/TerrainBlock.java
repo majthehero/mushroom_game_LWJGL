@@ -113,6 +113,8 @@ public class TerrainBlock
      */
     @Override
     public void draw(Matrix4f mvMat) {
+        // TODO multiply matrix
+
         // draw all containing items
         for (GameObject gobj : gameObjects) {
             gobj.draw(mvMat); // TODO multiply

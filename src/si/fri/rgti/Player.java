@@ -23,6 +23,7 @@ public class Player extends GameObject implements Updateable {
     float x;
     float y;
     float z;
+    // velocities
 
 
     // We need to strongly reference callback instances.
@@ -42,6 +43,8 @@ public class Player extends GameObject implements Updateable {
     public void update() {
         // TODO
     }
+
+
 
 
     private void init() {

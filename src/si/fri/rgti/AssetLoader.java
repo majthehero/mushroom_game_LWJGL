@@ -17,7 +17,15 @@ import static org.lwjgl.opengl.GL20.glValidateProgram;
 public class AssetLoader {
 
     Dictionary<String, Integer> SHADERS;
+    static AssetLoader assetLoader;
 
+    {
+        assetLoader = new AssetLoader();
+    }
+
+    public static AssetLoader getInstance() {
+        return assetLoader;
+    }
 
     /**
      * TODO:
