@@ -1,5 +1,7 @@
 package si.fri.rgti;
 
+import org.joml.Matrix4f;
+
 public class GameObject implements Drawable {
 
     /* TODO
@@ -12,7 +14,7 @@ public class GameObject implements Drawable {
     }
 
     @Override
-    public void draw() {
+    public void draw(Matrix4f mvMat) {
         // TODO
     }
 }

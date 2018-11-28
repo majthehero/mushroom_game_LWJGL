@@ -1,5 +1,6 @@
 package si.fri.rgti;
 
+import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.glfwPollEvents;
@@ -14,7 +15,7 @@ public class Game {
 
     Game(long window) {
         // init scene graph
-        sceneGraph = new SceneGraph();
+        sceneGraph = new SceneGraph(window);
         this.window = window;
     }
 
@@ -28,7 +29,7 @@ public class Game {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             sceneGraph.update();
-            sceneGraph.draw();
+            sceneGraph.draw(new Matrix4f()); // pass identity
 
 
             glfwSwapBuffers(window);

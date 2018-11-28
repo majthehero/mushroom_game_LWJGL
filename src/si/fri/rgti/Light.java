@@ -1,4 +1,6 @@
-import org.lwjgl.util.vector.Vector3f;
+package si.fri.rgti;
+
+import org.joml.Vector3f;
 
 public class Light {
 	
