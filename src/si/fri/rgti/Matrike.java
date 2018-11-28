@@ -5,35 +5,28 @@ import org.joml.Vector3f;
 
 public class Matrike {
 
-    /*
-    // Setup projection matrix
-    public Matrix4f projectionMat(Matrix4f mat, double left, double right, double bottom, double top, double near, double far, double width, double height) {
-        projectionMatrix = new Matrix4f();
-        float fieldOfView = 60f;
-        float aspectRatio = (float)width / (float)height;
+
+    public Matrix4f projectionMat(float x, float y, float z, double width, double height) {
+        float fov = 60f;
+        float aspectRatio = (float)width/(float)height;
         float near_plane = 0.1f;
         float far_plane = 100f;
 
-        float y_scale = this.coTangent(this.degreesToRadians(fieldOfView / 2f));
-        float x_scale = y_scale / aspectRatio;
+        double y_scale = 1/Math.tan(Math.toRadians(fov/2));
+        double x_scale = y_scale / aspectRatio;
         float frustum_length = far_plane - near_plane;
+        float k = -((2 * near_plane * far_plane) / frustum_length);
 
-        projectionMatrix.m00 = x_scale;
-        projectionMatrix.m11 = y_scale;
-        projectionMatrix.m22 = -((far_plane + near_plane) / frustum_length);
-        projectionMatrix.m23 = -1;
-        projectionMatrix.m32 = -((2 * near_plane * far_plane) / frustum_length);
-        projectionMatrix.m33 = 0;
-
-
-        //Matrix4f projectionMatrix = new Matrix4f();
-        mat.perspective(left, right, bottom, top, near, far, projectionMatrix);
+        Matrix4f projectionMatrix = new Matrix4f(
+                (float)x_scale, 0f, 0f, 0f,
+                0f, (float)y_scale, -1f, 0f,
+                0f, 0f, k, 0f,
+                0f, 0f, 0f, 0f);
         return projectionMatrix;
     }
 
-    */
 
-    // translating (moving) our view matrix over a certain vector
+
     public Matrix4f translateMat(float x, float y, float z, Matrix4f matTrans) {
         matTrans.translate(x, y, z);
         return matTrans;
