@@ -50,11 +50,13 @@ public class Player extends GameObject implements Updateable {
         // TODO
     }
 
-
-
-
     private void init() {
-//        glfwSetErrorCallback(errorCallback = errorCallbackPrint(System.err)); // TODO what?
+        glfwSetErrorCallback(new GLFWErrorCallback() {
+            @Override
+            public void invoke(int error, long description) {
+                System.out.println("OpenGL ERROR: " + error + " : " + description);
+            }
+        });
 
         // Setup a key callback. It will be called every time a key is pressed, repeated or released.
         glfwSetKeyCallback(window_ref, keyCallback = new GLFWKeyCallback() {
@@ -120,8 +122,12 @@ public class Player extends GameObject implements Updateable {
         koordKamere[0] = this.z;
 
         Matrix4f translateMat = translate(-koordKamere[0], -koordKamere[1], -koordKamere[2]);
-        Matrix4f rotX = rotateX()
-        // TODO: rotacija - skaliranje je lahko identiteta torej ignoriraj
+        Matrix4f rotX = rotateX(rot_x);
+        Matrix4f rotY = rotateY(rot_y);
+        Matrix4f rotZ = rotateY(rot_z);
+
+        Matrix4f mvMat = new Matrix4f();
+        rotX.mul(rotY).mul(rotZ).mul(translateMat, mvMat);
         return mvMat;
     }
 
