@@ -9,9 +9,6 @@ public class Tree
     methods: inherited
      */
 
-    public double color;
-    public boolean poison;
-
 
     public Tree() {
         // TODO
