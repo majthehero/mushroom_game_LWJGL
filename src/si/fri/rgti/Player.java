@@ -34,8 +34,8 @@ public class Player extends GameObject implements Updateable {
     }
 
     @Override
-    public void draw() {
-        super.draw(); // TODO
+    public void draw(Matrix4f mvMat) {
+         // TODO
     }
 
     @Override

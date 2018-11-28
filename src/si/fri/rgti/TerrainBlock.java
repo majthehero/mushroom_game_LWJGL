@@ -1,6 +1,7 @@
 package si.fri.rgti;
 
 import kotlin.reflect.jvm.internal.impl.types.checker.TypeCheckerContext;
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
 
@@ -111,11 +112,10 @@ public class TerrainBlock
      * Render object
      */
     @Override
-    public void draw() {
-        super.draw(); // useless, eh
+    public void draw(Matrix4f mvMat) {
         // draw all containing items
         for (GameObject gobj : gameObjects) {
-            gobj.draw();
+            gobj.draw(mvMat); // TODO multiply
         }
 
         // create geometry if not yet done

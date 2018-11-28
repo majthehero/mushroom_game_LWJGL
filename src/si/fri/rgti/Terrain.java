@@ -1,5 +1,6 @@
 package si.fri.rgti;
 
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
@@ -89,10 +90,10 @@ public class Terrain
     }
 
     @Override
-    public void draw() {
-        super.draw();
+    public void draw(Matrix4f mvMat) {
+
         for (TerrainBlock tb : terrainBlocks) {
-            tb.draw();
+            tb.draw(mvMat); // TODO multiply
         }
     }
 }
