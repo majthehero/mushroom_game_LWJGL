@@ -14,6 +14,9 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
+import input.keyboardHandler;
+import input.mouseHandler;
+
 
 public class Player extends GameObject implements Updateable {
 
@@ -29,7 +32,7 @@ public class Player extends GameObject implements Updateable {
     float rot_z;
 
     // velocities
-
+    float x_vel, y_vel, z_vel;
 
 
     // We need to strongly reference callback instances.
@@ -48,6 +51,33 @@ public class Player extends GameObject implements Updateable {
     @Override
     public void update() {
         // TODO
+    }
+
+    // check for collision
+    public boolean collisionCheck() {
+
+        return false;
+    }
+
+    public void movementDirection(){
+        glfwSetKeyCallback(window, keyCallback = new KeyboardHandler());
+        glfwSetCursorPosCallback(window, mouseCallback = new MouseHandler());
+
+
+        if(KeyboardHandler.isKeyDown(GLFW_KEY_W)) {
+            // naprej = 1.0;
+            x_vel = 1;
+        } else if(KeyboardHandler.isKeyDown(GLFW_KEY_A)) {
+            // levo
+            y_vel = 1;
+        } else if(KeyboardHandler.isKeyDown(GLFW_KEY_S)) {
+            // nazaj
+            y_vel = -1;
+        } else if(KeyboardHandler.isKeyDown(GLFW_KEY_D)) {
+            // desno
+            x_vel = -1;
+        }
+
     }
 
     private void init() {
@@ -70,7 +100,7 @@ public class Player extends GameObject implements Updateable {
 
 
     // h in w zaslona
-    public void mouse(long width, long height) {
+    public void spremembaMiske(long width, long height) {
 
         double prevX = 0;
         double prevY = 0;
@@ -113,91 +143,10 @@ public class Player extends GameObject implements Updateable {
 
 
 
-    // matrike iz predavanj
 
-    public Matrix4f getPerspectiveMatrix(float d) {
-        Matrix4f p = new Matrix4f(1, 0, 0, 0, 0, 1,
-                0, 0, 0, 0, 1, (float)(1/d), 0, 0, 0, 0);
-        return p;
-    }
 
-    public Matrix4f getMVMatrix() {
-        float[] koordKamere = new float[3];
-        koordKamere[0] = this.x;
-        koordKamere[0] = this.y;
-        koordKamere[0] = this.z;
 
-        Matrix4f translateMat = translate(-koordKamere[0], -koordKamere[1], -koordKamere[2]);
-        Matrix4f rotX = rotateX(rot_x);
-        Matrix4f rotY = rotateY(rot_y);
-        Matrix4f rotZ = rotateY(rot_z);
 
-        Matrix4f mvMat = new Matrix4f();
-        rotX.mul(rotY).mul(rotZ).mul(translateMat, mvMat);
-        return mvMat;
-    }
-
-    public Matrix4f getMVMatrix(double d) {
-        float[] koordKamere = new float[3];
-        koordKamere[0] = this.x;
-        koordKamere[0] = this.y;
-        koordKamere[0] = this.z;
-
-        Matrix4f matrikaPogleda = new Matrix4f();
-        Matrix4f translacijaKamere = translate(-koordKamere[0], -koordKamere[1], -koordKamere[2]);
-        Matrix4f perspektivaKamere = perspective(d);
-        perspektivaKamere.mul(translacijaKamere, matrikaPogleda);
-        return matrikaPogleda;
-    }
-
-    public Matrix4f perspective(double d) {
-        Matrix4f p = new Matrix4f(1, 0, 0, 0, 0, 1,
-                0, 0, 0, 0, 1, (float)(1/d), 0, 0, 0, 0);
-        return p;
-    }
-
-    public Matrix4f translate(double dx, double dy, double dz) {
-        Matrix4f p = new Matrix4f(1, 0, 0, 0, 0, 1,
-                0, 0, 0, 0, 1, 0,
-                (float)dx, (float)dy, (float)dz, 1);
-        return p;
-    }
-
-    public static Matrix4f scale(double sx, double sy, double sz) {
-        Matrix4f p = new Matrix4f((float)sx, 0, 0, 0,
-                0, (float)sy, 0, 0,
-                0, 0, (float)sz, 0,
-                0, 0, 0, (float)1);
-        return p;
-    }
-
-    public static Matrix4f rotateY(double kot) {
-        // kot spremenimo v radiane
-        kot = (kot/180)*Math.PI;
-        // matrika za rotacijo iz predavanj
-        return new Matrix4f((float)Math.cos(kot), 0, (float)((-1)*Math.sin(kot)),
-                0, 0, 1, 0, 0,
-                (float)Math.sin(kot), 0, (float)Math.cos(kot),
-                0, 0, 0, 0, 1);
-    }
-
-    public static Matrix4f rotateX(double kot) {
-        // kot spremenimo v radiane
-        kot = (kot/180)*Math.PI;
-        // matrika za rotacijo iz predavanj
-        return new Matrix4f(1f, 0f, 0f, 0f, 0f ,
-                (float)Math.cos(kot), (float)Math.sin(kot), 0f, 0f,
-                (float)((-1)*Math.sin(kot)), (float)Math.cos(kot), 0f, 0f, 0f, 0f, 1f);
-    }
-
-    public static Matrix4f rotateZ(double kot) {
-        // kot spremenimo v radiane
-        kot = (kot/180)*Math.PI;
-        // matrika za rotacijo iz predavanj
-        return new Matrix4f((float)Math.cos(kot), (float)Math.sin(kot), 0f, 0f,
-                (float)((-1)*Math.sin(kot)), (float)Math.cos(kot),
-                0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-    }
 
 
 }
