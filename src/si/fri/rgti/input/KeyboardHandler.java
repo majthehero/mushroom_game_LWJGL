@@ -1,17 +1,10 @@
-package si.fri.input;
+package si.fri.rgti.input;
 
-import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.opengl.GL;
+import org.lwjgl.glfw.GLFWKeyCallback;
 
-import java.io.*;
-
-import static org.lwjgl.glfw.Callbacks.*;
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.system.MemoryUtil.*;
 
-public class keyboardHandler extends GLFWKeyCallback {
+public class KeyboardHandler extends GLFWKeyCallback {
 
     public static boolean[] keys = new boolean[65536];
 

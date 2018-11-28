@@ -14,8 +14,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-import input.keyboardHandler;
-import input.mouseHandler;
+import si.fri.rgti.input.*;
 
 
 public class Player extends GameObject implements Updateable {
@@ -37,7 +36,8 @@ public class Player extends GameObject implements Updateable {
 
     // We need to strongly reference callback instances.
     private GLFWErrorCallback errorCallback;
-    private GLFWKeyCallback   keyCallback;
+    private GLFWKeyCallback keyCallback;
+    private GLFWCursorPosCallback mouseCallback;
 
     Player(long window_ref) {
         this.window_ref = window_ref;
@@ -60,8 +60,8 @@ public class Player extends GameObject implements Updateable {
     }
 
     public void movementDirection(){
-        glfwSetKeyCallback(window, keyCallback = new KeyboardHandler());
-        glfwSetCursorPosCallback(window, mouseCallback = new MouseHandler());
+        glfwSetKeyCallback(window_ref, keyCallback = new KeyboardHandler());
+        glfwSetCursorPosCallback(window_ref, mouseCallback = new MouseHandler());
 
 
         if(KeyboardHandler.isKeyDown(GLFW_KEY_W)) {

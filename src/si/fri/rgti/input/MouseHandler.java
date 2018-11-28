@@ -1,8 +1,8 @@
-package si.fri.input;
+package si.fri.rgti.input;
 
 import org.lwjgl.glfw.GLFWCursorPosCallback;
 
-public class mouseHandler extends GLFWCursorPosCallback {
+public class MouseHandler extends GLFWCursorPosCallback {
 	public double pos;
 	
   @Override
