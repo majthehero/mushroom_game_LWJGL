@@ -18,7 +18,10 @@ import si.fri.rgti.input.*;
 
 
 public class Player extends GameObject implements Updateable {
-
+    public int HP;
+    public int pobraneGobe;
+    public int pobranaZelisca;
+    public int goal;
 
     long window_ref;
     // position in game space
