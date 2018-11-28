@@ -4,6 +4,8 @@ public class Tree
         extends GameObject
         implements Interactable {
 
+
+
     public Tree() {
         // TODO
     }
