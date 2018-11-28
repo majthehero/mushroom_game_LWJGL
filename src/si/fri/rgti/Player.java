@@ -44,13 +44,13 @@ public class Player extends GameObject implements Updateable {
     }
 
     @Override
-    public void draw(Matrix4f mvMat) {
-         // TODO Maj
+    public void update() {
+        // TODO
     }
 
     @Override
-    public void update() {
-        // TODO
+    public void draw(Matrix4f mvMat) {
+        ;; // do nothing
     }
 
     // check for collision

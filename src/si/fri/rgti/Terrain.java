@@ -84,7 +84,7 @@ public class Terrain
         }
 
         // create a new block from height map
-        TerrainBlock newBlock = new TerrainBlock(heightmap);
+        TerrainBlock newBlock = new TerrainBlock(heightmap, block_x, block_y);
 
         return newBlock;
     }
@@ -93,6 +93,7 @@ public class Terrain
     public void draw(Matrix4f mvMat) {
 
         for (TerrainBlock tb : terrainBlocks) {
+
             tb.draw(mvMat); // TODO multiply
         }
     }

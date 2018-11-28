@@ -16,9 +16,12 @@ import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 public class TerrainBlock
     extends GameObject {
 
-    // position
+    // position - index in block array
     int x;
     int y;
+    // position in game space
+    float getPosX() { return (x-0.5f)*resolution; }
+    float getPosY() { return (y-0.5f)*resolution; }
 
     // game object
     ArrayList<GameObject> gameObjects = new ArrayList<>();
@@ -42,7 +45,9 @@ public class TerrainBlock
      * Contructor: constructs a TerrainBlock from heightmap.
      * @param heightmap Height map for this terrain block - float[][]
      */
-    TerrainBlock (float[][] heightmap) {
+    TerrainBlock (float[][] heightmap, int x_idx, int y_idx) {
+        x = x_idx; // block index, not position: position is (index-0.5) * 33f
+        y = y_idx;
         this.heightmap = heightmap;
         diamond_square(0, resolution-1, 0, resolution-1, 0);
     }
@@ -113,11 +118,16 @@ public class TerrainBlock
      */
     @Override
     public void draw(Matrix4f mvMat) {
-        // TODO multiply matrix
+        // get position and make next mvMat
+        Matrix4f locMvMat = new Matrix4f();
+//        Matrix4f rotX = None;
+//        Matrix4f rotY = None;
+//        Matrix4f rotZ = None;
+//        Matrix4f translateMat = None;
 
         // draw all containing items
         for (GameObject gobj : gameObjects) {
-            gobj.draw(mvMat); // TODO multiply
+            gobj.draw(locMvMat.mul(mvMat));
         }
 
         // create geometry if not yet done
@@ -127,7 +137,7 @@ public class TerrainBlock
         if (vertex_buffer == null || triangle_buffer == null)
             this.createBuffers();
 
-        // reder geometry
+        // render geometry
         glEnableVertexAttribArray(0);
 
         glBindBuffer(GL_ARRAY_BUFFER, vbo_vertex_handle); // vertex buffer

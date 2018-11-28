@@ -102,7 +102,7 @@ public class AssetLoader {
      * @param path Path to shader source.
      * @return int shader ID
      */
-    int loadFragmentShader(String path) {
+    int loadFragmentShader(String path, String name) {
         int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
         StringBuilder fragmentShaderSrc = new StringBuilder();
@@ -130,7 +130,7 @@ public class AssetLoader {
      * @param path Path to shader source.
      * @return int shader ID
      */
-    int loadVertexShader(String path) {
+    int loadVertexShader(String path, String name) {
         int vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
         StringBuilder vertexShaderSrc = new StringBuilder();
@@ -154,6 +154,14 @@ public class AssetLoader {
             System.out.println("Failed to compile vertex shader.");
 
         return vertexShader;
+    }
+
+    List<Integer> getShadersByName(List<String> shader_names) {
+        List<Integer> retval = new ArrayList<>(shader_names.size());
+        for (String shader_name : shader_names) {
+            retval.add(SHADERS.get(shader_name));
+        }
+        return retval;
     }
 
     /**
