@@ -4,12 +4,6 @@ public class Tree
         extends GameObject
         implements Interactable {
 
-    /* TODO
-    members: color, poison bool, clipping box?
-    methods: inherited
-     */
-
-
     public Tree() {
         // TODO
     }
