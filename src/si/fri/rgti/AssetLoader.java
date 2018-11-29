@@ -2,7 +2,7 @@ package si.fri.rgti;
 
 import org.joml.Vector3f;
 
-import de.matthiasmann.twl.utils.PNGDecoder;
+import static de.matthiasmann.twl.utils.PNGDecoder;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
