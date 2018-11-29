@@ -1,19 +1,17 @@
 package si.fri.rgti;
 
+import de.matthiasmann.twl.utils.PNGDecoder;
 import org.joml.Vector3f;
+import org.lwjgl.opengl.GL11;
 
-import static de.matthiasmann.twl.utils.PNGDecoder;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL20.glValidateProgram;
 
 public class AssetLoader {
 
@@ -95,40 +93,29 @@ public class AssetLoader {
 
     // textures
 
-    public static Tex loadTexture(String fileName){
+    public void loadTexture(String filename) throws IOException {
 
-        //load png file
-        PNGDecoder decoder = new PNGDecoder(ClassName.class.getResourceAsStream(fileName));
+        InputStream in = new FileInputStream(filename);
+        try {
+            // This decodes the header of the PNG files and extracts information like width, height and color format.
+            PNGDecoder decoder = new PNGDecoder(in);
 
-        //create a byte buffer big enough to store RGBA values
-        ByteBuffer buffer = ByteBuffer.allocateDirect(4 * decoder.getWidth() * decoder.getHeight());
+            // System.out.println("width="+decoder.getWidth());
+            // System.out.println("height="+decoder.getHeight());
 
-        //decode
-        decoder.decode(buffer, decoder.getWidth() * 4, PNGDecoder.Format.RGBA);
+            // This will decode the image data of the PNG.
+            ByteBuffer buf = ByteBuffer.allocateDirect(4*decoder.getWidth()*decoder.getHeight());
+            decoder.decode(buf, decoder.getWidth()*4, PNGDecoder.Format.RGBA);
+            buf.flip();
 
-        //flip the buffer so its ready to read
-        buffer.flip();
 
-        //create a texture
-        int id = glGenTextures();
+            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, decoder.getWidth(), decoder.getHeight(), 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buf);
 
-        //bind the texture
-        glBindTexture(GL_TEXTURE_2D, id);
+        } finally {
+            in.close();
+        }
 
-        //tell opengl how to unpack bytes
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-        //set the texture parameters, can be GL_LINEAR or GL_NEAREST
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        //upload texture
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, decoder.getWidth(), decoder.getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-
-        // Generate Mip Map
-        glGenerateMipmap(GL_TEXTURE_2D);
-
-        return new Tex(id);
     }
 
 
