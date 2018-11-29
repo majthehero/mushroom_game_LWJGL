@@ -1,12 +1,15 @@
 package si.fri.rgti;
 
+import de.matthiasmann.twl.utils.PNGDecoder;
 import org.joml.Vector3f;
 
-import static de.matthiasmann.twl.utils.PNGDecoder;
+
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
@@ -14,6 +17,7 @@ import java.util.List;
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL20.glValidateProgram;
+import static org.lwjgl.opengles.GLES20.glGenTextures;
 
 public class AssetLoader {
 

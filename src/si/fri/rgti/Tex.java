@@ -1,6 +1,9 @@
 package si.fri.rgti;
 
+
+
 import static org.lwjgl.opengl.GL11.*;
+
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWErrorCallback;
