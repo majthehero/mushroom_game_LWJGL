@@ -34,8 +34,10 @@ public class SceneGraph
     public void draw(Matrix4f mvMat) {
         Vector3f camPosition = new Vector3f(player.x, player.y, player.z);
         Vector3f lightPosition = new Vector3f(1.0f, 0.6f, 0.3f); // some light added
-        Matrix4f mvMatrix = player.getMVMatrix();
-        Matrix4f pMatrix = player.getPerspectiveMatrix(4.0f);
+
+        Matrike m = new Matrike();
+        Matrix4f mvMatrix = new Matrix4f(); // player.getMVMatrix();
+        Matrix4f pMatrix = new Matrix4f(); // player.getPerspectiveMatrix(4.0f);
 
         FloatBuffer mvMatBuffer = BufferUtils.createFloatBuffer(4*4);
         FloatBuffer pMatBuffer = BufferUtils.createFloatBuffer(4*4);
