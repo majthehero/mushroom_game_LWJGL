@@ -1,6 +1,6 @@
 package si.fri.rgti;
 
-import kotlin.reflect.jvm.internal.impl.types.checker.TypeCheckerContext;
+//import kotlin.reflect.jvm.internal.impl.types.checker.TypeCheckerContext;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
@@ -9,6 +9,8 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
+import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
+import static org.lwjgl.opengl.GL11C.glDrawElements;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.glDisableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;

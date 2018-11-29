@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.List;
 
-import static org.lwjgl.opengl.GL11.GL_FALSE;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
 
 public class AssetLoader {
@@ -109,7 +109,7 @@ public class AssetLoader {
             buf.flip();
 
 
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, decoder.getWidth(), decoder.getHeight(), 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buf);
+            glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, decoder.getWidth(), decoder.getHeight(), 0, GL11.GL_RGBA, GL_UNSIGNED_BYTE, buf);
 
         } finally {
             in.close();
